@@ -1,0 +1,14 @@
+{
+  "name": "string_calculator",
+  "version": "1.0.0",
+  "description": "string calculator kata",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "tmoco",
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "^4.5.0"
+  }
+}
