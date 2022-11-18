@@ -26,16 +26,18 @@ describe("Number cleaning", () => {
 
 describe("Add functionality", () => {
   it("should add two numbers separated by one of the following delimiters: , : \\n ;", () => {
-    expect(add("1,1")).toEqual(2);
-    expect(add("1:1")).toEqual(2);
-    expect(add("1\n1")).toEqual(2);
-    expect(add("1;1")).toEqual(2);
+    const delimiters = ["1,1", "1:1", "1\n1", "1;1"];
+    delimiters.forEach((delimiter) => {
+      expect(add(delimiter)).toEqual(2);
+    });
   });
 
   it("should always have delimiters followed by a number", () => {
     expect(() => {
       add("1;");
-    }).toThrow(new Error("Delimiters must be followed by a number"));
+    }).toThrow(
+      new Error("Invalid string (Delimiters must be preceded by a number)")
+    );
   });
 
   it("Splits the string into numbers using delimiters spedified at the start of the string", () => {
