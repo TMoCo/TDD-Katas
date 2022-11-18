@@ -1,7 +1,7 @@
-const {
+import {
   splitDelimitersFromIntegers,
   convertStringToNumber,
-} = require("./string");
+} from './string.js';
 
 const add = (inputString) => {
   if (inputString.length == 0) return 0;
@@ -13,11 +13,11 @@ const add = (inputString) => {
   return integers.reduce((sum, integer) => {
     if (integer.length === 0) {
       throw new Error(
-        "Invalid string (Delimiters must be preceded by a number)"
+        'Invalid string (Delimiters must be preceded by a number)'
       );
     }
     return sum + convertStringToNumber(integer);
   }, 0);
 };
 
-module.exports = add;
+export default add;

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "string calculator kata",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "jasmine"
   },

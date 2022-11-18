@@ -2,22 +2,22 @@ const convertStringToNumber = (numberAsString) => {
   const num = parseInt(numberAsString);
 
   if (num < 0) {
-    throw new Error("Negative number detected, bad.");
+    throw new Error('Negative number detected, bad.');
   }
 
   return num > 1000 ? 0 : num;
 };
 
 const splitDelimitersFromIntegers = (inputString) => {
-  if (inputString[0] === "[") {
-    const endingIndex = inputString.search("]");
+  if (inputString[0] === '[') {
+    const endingIndex = inputString.search(']');
 
     if (endingIndex === -1) {
-      throw new Error("Invalid string: could not find delimiters");
+      throw new Error('Invalid string: could not find delimiters');
     }
 
     const delimiters = new RegExp(
-      "[" + inputString.substring(1, endingIndex) + "]"
+      '[' + inputString.substring(1, endingIndex) + ']'
     );
 
     const intString = inputString.substring(
@@ -32,11 +32,8 @@ const splitDelimitersFromIntegers = (inputString) => {
   }
   return {
     intString: inputString,
-    delimiters: new RegExp("[:;,\n]"),
+    delimiters: new RegExp('[:;,\n]'),
   };
 };
 
-module.exports = {
-  convertStringToNumber,
-  splitDelimitersFromIntegers,
-};
+export { convertStringToNumber, splitDelimitersFromIntegers };
