@@ -1,7 +1,7 @@
 {
-  "name": "bowlingball",
+  "name": "bowling_game",
   "version": "1.0.0",
-  "description": "bowling ball kata",
+  "description": "Bowling game kata.",
   "main": "src/index.js",
   "scripts": {
     "test": "jasmine"
