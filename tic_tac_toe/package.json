@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Tic tac toe kata.",
   "main": "src/index.ts",
-  "type": "module",
   "scripts": {
     "test": "mocha -r ts-node/register test/**.test.ts"
   },

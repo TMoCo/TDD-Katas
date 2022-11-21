@@ -1,8 +1,13 @@
 export default class TicTacToe {
+  readonly turn: number[];
+  readonly board: string[][];
+
   constructor() {
-    const turn: number[] = [];
-    const board: string[][] = Array<string>(3)
+    this.turn = [];
+    this.board = Array<string>(3)
       .fill('#')
       .map(() => Array<string>(3).fill('#'));
+
+    console.log(this.board);
   }
 }
