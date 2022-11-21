@@ -8,8 +8,10 @@ const TicTacToe_1 = __importDefault(require("../src/TicTacToe"));
 describe('Game of tic tac toe', () => {
     it('creates an empty board', () => {
         const game = new TicTacToe_1.default();
-        game.board.forEach((cell) => {
-            assert_1.default.equal(cell, '#');
+        game.board.forEach((row) => {
+            row.forEach((col) => {
+                assert_1.default.equal(col, '#');
+            });
         });
     });
 });

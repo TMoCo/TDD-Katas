@@ -4,6 +4,7 @@
   "description": "Tic tac toe kata.",
   "main": "src/index.ts",
   "scripts": {
+    "build": "npx ts-node ./src/index.ts",
     "test": "mocha -r ts-node/register test/**.test.ts"
   },
   "author": "tmoco",

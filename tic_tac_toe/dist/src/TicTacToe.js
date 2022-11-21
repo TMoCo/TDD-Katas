@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class TicTacToe {
     constructor() {
-        const turn = [];
-        const board = Array(3)
+        this.turn = [];
+        this.board = Array(3)
             .fill('#')
             .map(() => Array(3).fill('#'));
         console.log(this.board);
