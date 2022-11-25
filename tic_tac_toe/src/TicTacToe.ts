@@ -8,6 +8,23 @@ export enum BoardState {
 
 export const MAX_MOVES: number = 9;
 
+function checkDiagonals(board: string[][]): boolean {
+  const won =
+    (board[0][0] === board[1][1] && board[1][1] === board[2][2]) ||
+    (board[0][2] === board[1][1] && board[1][1] === board[2][0]);
+
+  return won && board[1][1] !== '#';
+}
+
+function checkRowColPair(board: string[][], index: number): boolean {
+  const wonRow =
+    board[index][0] === board[index][1] && board[index][1] === board[index][2];
+  const wonCol =
+    board[0][index] === board[1][index] && board[1][index] === board[2][index];
+
+  return (wonRow || wonCol) && board[index][index] !== '#';
+}
+
 export default class TicTacToe {
   readonly moves: Move[];
   readonly board: string[][];
@@ -40,7 +57,6 @@ export default class TicTacToe {
     if (!this.won() && this.moves.length === MAX_MOVES) {
       this.state = BoardState.DRAW;
     }
-
   }
 
   turnsPlayed(): number {
@@ -48,29 +64,18 @@ export default class TicTacToe {
   }
 
   won(): boolean {
-    this.board.forEach((row, index) => {
-      if (
-        row.every((el) => el === row[0]) ||
-        (this.board[0][index] === this.board[1][index] &&
-          this.board[1][index] === this.board[2][index])
-      ) {
-        if (row[index] !== '#') {
-          this.state = BoardState.WIN;
-        }
-      }
-    });
-
-    if (
-      (this.board[0][0] === this.board[1][1] &&
-        this.board[1][1] === this.board[2][2]) ||
-      (this.board[0][2] === this.board[1][1] &&
-        this.board[1][1] === this.board[2][0])
-    ) {
-      if (this.board[1][1] !== '#') {
+    for (const [index, _] of this.board.entries()) {
+      if (checkRowColPair(this.board, index)) {
         this.state = BoardState.WIN;
+        return true;
       }
     }
 
-    return this.state === BoardState.WIN;
+    if (checkDiagonals(this.board)) {
+      this.state = BoardState.WIN;
+      return true;
+    }
+
+    return false;
   }
 }
