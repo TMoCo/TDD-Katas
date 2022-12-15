@@ -25,6 +25,17 @@ function checkRowColPair(board: string[][], index: number): boolean {
   return (wonRow || wonCol) && board[index][index] !== '#';
 }
 
+function isValidMove(move: Move): boolean {
+  return move[0] >= 0 && move[0] < 3 && move[1] >= 0 && move[1] < 3;
+}
+
+export class InvalidMoveError extends Error {
+  constructor(message: string) {
+    super('Invalid Move - ' + message);
+    this.name = 'InvalidMoveError';
+  }
+}
+
 export default class TicTacToe {
   readonly moves: Move[];
   readonly board: string[][];
@@ -44,11 +55,15 @@ export default class TicTacToe {
 
   nextMove(move: Move): void {
     if (this.state !== BoardState.PLAY) {
-      throw new Error('Invalid move - game is over!');
+      throw new InvalidMoveError('Game is over!');
+    }
+
+    if (!isValidMove(move)) {
+      throw new InvalidMoveError('Move index out of bounds!');
     }
 
     if (this.board[move[0]][move[1]] !== '#') {
-      throw new Error('Invalid move - Board place already occupied!');
+      throw new InvalidMoveError('Board place already occupied!');
     }
 
     this.moves.push(move);
@@ -77,5 +92,11 @@ export default class TicTacToe {
     }
 
     return false;
+  }
+
+  printBoard(): void {
+    this.board.forEach((row) => {
+      console.log(row);
+    });
   }
 }

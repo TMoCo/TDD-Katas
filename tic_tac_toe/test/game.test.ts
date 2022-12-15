@@ -1,5 +1,10 @@
 import assert from 'assert';
-import TicTacToe, { BoardState, Move, MAX_MOVES } from '../src/TicTacToe';
+import TicTacToe, {
+  InvalidMoveError,
+  BoardState,
+  Move,
+  MAX_MOVES,
+} from '../src/TicTacToe';
 
 const gameStates: Move[][] = [
   // two moves
@@ -60,7 +65,7 @@ describe('Game of tic tac toe', () => {
   });
 
   describe('Player moves', () => {
-    it('Processes a player\'s next move', () => {
+    it("Processes a player's next move", () => {
       const game = new TicTacToe();
       advanceGameToState(game, gameStates[0]);
 
@@ -75,24 +80,36 @@ describe('Game of tic tac toe', () => {
       assert.strictEqual(game.turnsPlayed(), 2);
     });
 
-    it('Throws an error when placing a token on an occupied board place', () => {
-      const game = new TicTacToe();
-      const error = new Error('Invalid move - Board place already occupied!');
-      advanceGameToState(game, gameStates[0]);
+    describe('Detect invalid moves', () => {
+      it('Throws an error when placing a token on an occupied board place', () => {
+        const game = new TicTacToe();
+        const error = new InvalidMoveError('Board place already occupied!');
+        advanceGameToState(game, gameStates[0]);
 
-      assert.throws(() => {
-        game.nextMove([0, 0]);
-      }, error);
-    });
+        assert.throws(() => {
+          game.nextMove([0, 0]);
+        }, error);
+      });
 
-    it('Throws an error when placing a token when not in a PLAY state', () => {
-      const game = new TicTacToe();
-      const error = new Error('Invalid move - game is over!');
-      advanceGameToState(game, gameStates[1]);
+      it('Throws an error when placing a token on an invalid board place', () => {
+        const game = new TicTacToe();
+        const error = new InvalidMoveError('Move index out of bounds!');
+        advanceGameToState(game, gameStates[0]);
 
-      assert.throws(() => {
-        game.nextMove([2, 2]);
-      }, error);
+        assert.throws(() => {
+          game.nextMove([100000, 0]);
+        }, error);
+      });
+
+      it('Throws an error when placing a token when not in a PLAY state', () => {
+        const game = new TicTacToe();
+        const error = new InvalidMoveError('Game is over!');
+        advanceGameToState(game, gameStates[1]);
+
+        assert.throws(() => {
+          game.nextMove([2, 2]);
+        }, error);
+      });
     });
   });
 
