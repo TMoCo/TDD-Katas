@@ -1,2 +1,2 @@
-#TDD Katas
-A few katas I have worked on to practice getting into the habit of Test Drive Development as well getting aquainted with modern JS, testing frameworks and TypeScript.
+# TDD Katas
+A few katas I have worked on to practice getting into the habit of Test Drive Development as well getting more aquainted with modern JS, a few of the many testing frameworks available, and TypeScript. In time, I will write a small document, perhaps a small blog post on my personal website, about these exercises and how useful they have been in my endeavours to better my programming skills and habits.

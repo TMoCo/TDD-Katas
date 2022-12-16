@@ -1,14 +1,23 @@
 {
-  "name": "bowling_game",
-  "version": "1.0.0",
-  "description": "Bowling game kata.",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "jasmine"
-  },
-  "author": "tmoco",
-  "license": "ISC",
-  "devdependencies": {
-    "jasmine": "^4.5.0"
-  }
+    "name": "bowling_game",
+    "version": "1.0.0",
+    "description": "Bowling game kata.",
+    "main": "src/index.js",
+    "type": "module",
+    "scripts": {
+        "test": "jest ./test"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.[t|j]sx?$": "babel-jest"
+        }
+    },
+    "author": "tmoco",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.20.5",
+        "@babel/preset-env": "^7.20.2",
+        "babel-jest": "^29.3.1",
+        "jest": "^29.3.1"
+    }
 }
